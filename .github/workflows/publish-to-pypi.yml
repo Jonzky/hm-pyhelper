@@ -63,7 +63,7 @@ jobs:
         id: latest_version
         uses: abatilo/release-info-action@v1.3.0
         with:
-          owner: NebraLtd
+          owner: Jonzky
           repo: hm-pyhelper
 
       - name: Upload binaries to release
