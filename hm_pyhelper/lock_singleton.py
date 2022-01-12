@@ -1,4 +1,5 @@
 import functools
+from logging import Logger
 import threading
 from hm_pyhelper.logger import get_logger
 
@@ -51,16 +52,20 @@ def lock_ecc(timeout=DEFAULT_TIMEOUT, raise_resource_busy_exception=True):
         def wrapper_lock_ecc(*args, **kwargs):
             try:
                 # try to acquire the ECC resource or may raise an exception
+                LOGGER.info("Lock has been aquired for ECC")
                 lock.acquire(timeout=timeout)
-
                 try:
+                    LOGGER.info("Pre-Function call for ECC")                
                     value = func(*args, **kwargs)
+                    LOGGER.info("Pre-Function call for ECC")
                 except Exception as ex:
                     lock.release()
+                    LOGGER.error("Error raised during ECC call - %s" % str(ex))
                     raise ex
 
                 # release the resource
                 lock.release()
+                LOGGER.info("Lock has been released for ECC")
 
                 return value
             except ResourceBusyError as ex:

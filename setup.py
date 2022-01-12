@@ -3,7 +3,7 @@ from os.path import join, dirname
 
 setup(
     name='forked_hm-diag',
-    version='0.12.5',
+    version='0.13.0',
     author="Jon",
     author_email="JonZakay@aol.com",
     description="Helium Python Helper",
